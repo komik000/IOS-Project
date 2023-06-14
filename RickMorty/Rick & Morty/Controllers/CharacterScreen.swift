@@ -242,6 +242,7 @@ extension CharacterScreen: UITableViewDelegate,UITableViewDataSource, UITextFiel
         tableView.deselectRow(at: indexPath, animated: true)
         
         let detailViewController = CharacterDetailViewController(model: list[indexPath.row])
+        detailViewController.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(detailViewController, animated: false)
     }

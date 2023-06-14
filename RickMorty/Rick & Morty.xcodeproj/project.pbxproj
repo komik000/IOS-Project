@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5AAB39412A39905200AE3FB4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB39402A39905200AE3FB4 /* EditProfileViewController.swift */; };
 		5AAB39442A39907400AE3FB4 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB39432A39907400AE3FB4 /* EditNameViewController.swift */; };
 		5AAB39472A3990A400AE3FB4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB39462A3990A400AE3FB4 /* LoginViewController.swift */; };
 		5AAB39492A3990CA00AE3FB4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB39482A3990CA00AE3FB4 /* RegisterViewController.swift */; };
@@ -338,7 +337,6 @@
 				A6C93FC22A2CB99B0089C6D2 /* SettingsScreen.swift in Sources */,
 				A6C93FBE2A2CB9450089C6D2 /* LocationScreen.swift in Sources */,
 				847BA6DD2A36D80F0031B2A5 /* RedViewController.swift in Sources */,
-				5AAB39412A39905200AE3FB4 /* EditProfileViewController.swift in Sources */,
 				5AAB39472A3990A400AE3FB4 /* LoginViewController.swift in Sources */,
 				843BA78D2A2F84FE0029184E /* APIManager.swift in Sources */,
 				843174622A362DED00192E62 /* LocationTableViewCell.swift in Sources */,

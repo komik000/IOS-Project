@@ -125,7 +125,8 @@ class EditProfileViewController: UIViewController {
                 }
                 let vc = LoginViewController()
                 vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.setViewControllers([vc], animated: true)
+//                self.navigationController?.pushViewController(vc, animated: true)
             }catch{
                print("An error occured")
             }

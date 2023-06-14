@@ -39,8 +39,8 @@ class HomeScreen: UITabBarController {
 //        nav4.navigationBar.prefersLargeTitles = true
         
         nav1.tabBarItem = UITabBarItem(title: "Персонажи", image: UIImage(named: "Subtract.png"), tag: 1)
-        nav2.tabBarItem = UITabBarItem(title: "Локации", image: UIImage(named: "Subtract.png"), tag: 1)
-        nav3.tabBarItem = UITabBarItem(title: "Эпизоды", image: UIImage(named: "Subtract.png"), tag: 1)
+        nav2.tabBarItem = UITabBarItem(title: "Локации", image: UIImage(named: "action"), tag: 1)
+        nav3.tabBarItem = UITabBarItem(title: "Эпизоды", image: UIImage(named: "tv"), tag: 1)
         nav4.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gearshape"), tag: 1)
         tabBar.tintColor = tintColor
         tabBar.backgroundColor = backroundColor

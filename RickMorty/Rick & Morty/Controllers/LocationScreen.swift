@@ -191,6 +191,7 @@ extension LocationScreen: UITableViewDelegate,UITableViewDataSource, UITextField
         
         tableView.deselectRow(at: indexPath, animated: true)
         let detailViewController = LocationDetailViewController(model: list[indexPath.row])
+        detailViewController.hidesBottomBarWhenPushed = true
         
         navigationController?.pushViewController(detailViewController, animated: false)
         
