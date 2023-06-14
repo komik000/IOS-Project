@@ -9,7 +9,8 @@ import UIKit
 
 class HomeScreen: UITabBarController {
     
-    let color = UIColor(named: "tabBar")
+    let backroundColor = UIColor(named: "tabBarColorBackround")
+    let tintColor = UIColor(named: "tintColor")
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,12 +21,6 @@ class HomeScreen: UITabBarController {
         
         let vc2 = LocationScreen()
 //        vc2.title = "Location"
-        
-        tabBar.backgroundColor = color
-        tabBar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.08).cgColor
-        tabBar.layer.shadowOpacity = 1
-        tabBar.layer.shadowOffset = CGSize(width: 0, height: -4)
-        tabBar.layer.shadowRadius = 30
         
         let vc3 = EpisodeScreen()
 //        vc3.title = "Episode"
@@ -46,7 +41,13 @@ class HomeScreen: UITabBarController {
         nav1.tabBarItem = UITabBarItem(title: "Персонажи", image: UIImage(named: "Subtract.png"), tag: 1)
         nav2.tabBarItem = UITabBarItem(title: "Локации", image: UIImage(named: "Subtract.png"), tag: 1)
         nav3.tabBarItem = UITabBarItem(title: "Эпизоды", image: UIImage(named: "Subtract.png"), tag: 1)
-        nav4.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(named: "Subtract.png"), tag: 1)
+        nav4.tabBarItem = UITabBarItem(title: "Настройки", image: UIImage(systemName: "gearshape"), tag: 1)
+        tabBar.tintColor = tintColor
+        tabBar.backgroundColor = backroundColor
+        tabBar.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.08).cgColor
+        tabBar.layer.shadowOpacity = 1
+        tabBar.layer.shadowOffset = CGSize(width: 0, height: -4)
+        tabBar.layer.shadowRadius = 30
         
         setViewControllers([nav1, nav2, nav3, nav4], animated: false)
     }
