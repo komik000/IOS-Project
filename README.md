@@ -1,6 +1,7 @@
 # Rick-Morty IOS-Project
 
-Hello everyone. This is project that we created collab with Yessimkhan. We also connect API and created this project from design Figma.
+The Rick-Morty iOS project is a collaborative effort between Azamat Toqtasynuly and Yessimkhan Zhumash, aimed at creating an engaging mobile application based on the popular TV show "Rick and Morty." The project incorporates various technologies and frameworks, including Swift, SnapKit, Firebase, Kingfisher, and UIKit.
+
 
 
 [Link to Figma](https://www.figma.com/file/oD1PX2y5tukbJEBPHf4Psx/Rick-%26-Morty?type=design&node-id=0-1)  
