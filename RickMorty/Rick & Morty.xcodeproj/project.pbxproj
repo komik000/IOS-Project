@@ -13,6 +13,7 @@
 		5AAB394C2A3997D600AE3FB4 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB394B2A3997D600AE3FB4 /* FirebaseAuth */; };
 		5AAB394E2A3997D600AE3FB4 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5AAB394D2A3997D600AE3FB4 /* FirebaseDatabase */; };
 		5AAB39502A399A2400AE3FB4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5AAB394F2A399A2400AE3FB4 /* GoogleService-Info.plist */; };
+		5AAB39512A39B9E400AE3FB4 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB39402A39905200AE3FB4 /* EditProfileViewController.swift */; };
 		8431745A2A358BF400192E62 /* EpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843174592A358BF400192E62 /* EpisodeDetailViewController.swift */; };
 		843174622A362DED00192E62 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843174612A362DED00192E62 /* LocationTableViewCell.swift */; };
 		843174652A362EF800192E62 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843174642A362EF800192E62 /* Location.swift */; };
@@ -338,6 +339,7 @@
 				A6C93FBE2A2CB9450089C6D2 /* LocationScreen.swift in Sources */,
 				847BA6DD2A36D80F0031B2A5 /* RedViewController.swift in Sources */,
 				5AAB39472A3990A400AE3FB4 /* LoginViewController.swift in Sources */,
+				5AAB39512A39B9E400AE3FB4 /* EditProfileViewController.swift in Sources */,
 				843BA78D2A2F84FE0029184E /* APIManager.swift in Sources */,
 				843174622A362DED00192E62 /* LocationTableViewCell.swift in Sources */,
 				A6C93FBC2A2CB91E0089C6D2 /* CharacterScreen.swift in Sources */,

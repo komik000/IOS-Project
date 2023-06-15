@@ -150,7 +150,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tabBarController?.tabBar.isHidden = true
+        //        self.tabBarController?.tabBar.isHidden = true
         setUpColors()
         setUpViews()
         setUpConstraints()
@@ -163,8 +163,9 @@ class LoginViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        self.tabBarController?.tabBar.isHidden = false
         print("will disappear login")
+        self.inputName1.text = ""
+        self.inputName2.text = ""
     }
     
     
@@ -190,11 +191,7 @@ class LoginViewController: UIViewController {
         
         print("you are logged in ehooooy")
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        inputName1.becomeFirstResponder()
-//        inputName2.becomeFirstResponder()
-//    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0 {
@@ -211,9 +208,9 @@ class LoginViewController: UIViewController {
     @objc func handleTap() {
         view.endEditing(true)
     }
-    
-    // MARK: - setupViews
 }
+
+// MARK: - setupViews
 private extension LoginViewController{
     
     func setUpColors(){

@@ -8,14 +8,15 @@
 import UIKit
 import FirebaseAuth
 
-class RegisterViewController: UIViewController {
+final class RegisterViewController: UIViewController {
+    
     var tapGestureRecognizer: UITapGestureRecognizer!
     let backroundColor = UIColor(named: "backroundColor")
     let bigTextColor = UIColor(named: "textColor")
     let smallTextColor = UIColor(named: "miniTextColor")
     let deviderColor = UIColor(named: "deviderColor")
     
-    let Title: UILabel = {
+    private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Редактировать профиль"
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
@@ -24,18 +25,14 @@ class RegisterViewController: UIViewController {
         return label
     }()
     
-    let backButton: UIButton = {
+    private let backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "arrow.backward"), for: .normal)
         button.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    let stasus1: UILabel = {
+    private let stasus1: UILabel = {
         let label = UILabel()
         label.text = "Электронная почта"
         label.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -43,7 +40,8 @@ class RegisterViewController: UIViewController {
         label.textColor = .white
         return label
     }()
-    let inputName1:UITextField = {
+    
+    private let inputName1: UITextField = {
         let field = UITextField()
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x:0,y:0,width:16,height:0))
@@ -53,7 +51,21 @@ class RegisterViewController: UIViewController {
         field.layer.cornerRadius = 12
         return field
     }()
-    let stasus2: UILabel = {
+    
+    private let showPasswordButton1: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "eye-slashed"), for: .normal)
+        button.addTarget(self, action:#selector(showPasswordButtonTapped1), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func showPasswordButtonTapped1(){
+        inputName2.isSecureTextEntry.toggle()
+        let imageName = inputName2.isSecureTextEntry ? "eye-slashed" : "eye"
+        showPasswordButton1.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    private let stasus2: UILabel = {
         let label = UILabel()
         label.text = "Пароль"
         label.font = UIFont.boldSystemFont(ofSize: 14.0)
@@ -61,7 +73,8 @@ class RegisterViewController: UIViewController {
         label.textColor = .white
         return label
     }()
-    let inputName2:UITextField = {
+    
+    private let inputName2:UITextField = {
         let field = UITextField()
         field.leftViewMode = .always
         field.leftView = UIView(frame: CGRect(x:0,y:0,width:16,height:0))
@@ -70,8 +83,17 @@ class RegisterViewController: UIViewController {
         field.autocapitalizationType = .none
         field.autocorrectionType = .no
         field.layer.cornerRadius = 12
+        field.textContentType = .oneTimeCode
         return field
     }()
+    
+    private let showPasswordButton2: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "eye-slashed"), for: .normal)
+        button.addTarget(self, action:#selector(showPasswordButtonTapped2), for: .touchUpInside)
+        return button
+    }()
+    
     let stasus3: UILabel = {
         let label = UILabel()
         label.text = "Подтвердите пароль"
@@ -80,6 +102,7 @@ class RegisterViewController: UIViewController {
         label.textColor = .white
         return label
     }()
+    
     let inputName3:UITextField = {
         let field = UITextField()
         field.leftViewMode = .always
@@ -91,6 +114,7 @@ class RegisterViewController: UIViewController {
         field.layer.cornerRadius = 12
         return field
     }()
+    
     let saveButton: UIButton = {
         let button = UIButton()
         button.setTitle("Зарегистрироваться", for: .normal)
@@ -100,6 +124,7 @@ class RegisterViewController: UIViewController {
         button.addTarget(self, action:#selector(saveButtonTapped), for: .touchUpInside)
         return button
     }()
+    
     @objc func saveButtonTapped(){
         guard let email = inputName1.text, !email.isEmpty,
               let password = inputName2.text, !password.isEmpty,
@@ -124,9 +149,6 @@ class RegisterViewController: UIViewController {
                 let vc = HomeScreen()
                 strongSelf.navigationController?.pushViewController(vc, animated: true)
                 print("You have signed in")
-                strongSelf.inputName1.resignFirstResponder()
-                strongSelf.inputName2.resignFirstResponder()
-                strongSelf.inputName3.resignFirstResponder()
             }
         }
     }
@@ -143,50 +165,53 @@ class RegisterViewController: UIViewController {
         view.addGestureRecognizer(tapGestureRecognizer)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
-        // Do any additional setup after loading the view.
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        self.tabBarController?.tabBar.isHidden = false
-    }
-    lazy var y = {
-        return self.saveButton.frame.origin.y
-    }()
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.saveButton.frame.origin.y == y {
-                self.saveButton.frame.origin.y -= (keyboardSize.height-30)
+            self.saveButton.snp.updateConstraints { make in
+                make.bottom.equalToSuperview().inset(keyboardSize.height+30)
+                make.leading.trailing.equalToSuperview().inset(20)
+                make.height.equalTo(48)
+                print("hello")
             }
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
         }
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
-        if self.saveButton.frame.origin.y != y {
-            self.saveButton.frame.origin.y = y
+        self.saveButton.snp.updateConstraints { make in
+            make.bottom.equalToSuperview().inset(70)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(48)
+            print("helloh")
         }
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
     }
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func showPasswordButtonTapped2(){
+        inputName3.isSecureTextEntry.toggle()
+        let imageName = inputName3.isSecureTextEntry ? "eye-slashed" : "eye"
+        showPasswordButton2.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
     @objc func handleTap() {
         view.endEditing(true)
     }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 private extension RegisterViewController{
+    
     func setUpColors(){
-        Title.textColor = bigTextColor
+        titleLabel.textColor = bigTextColor
         backButton.imageView?.tintColor = bigTextColor
         view.backgroundColor = backroundColor
         stasus1.textColor = bigTextColor
@@ -201,10 +226,10 @@ private extension RegisterViewController{
         inputName3.textColor = bigTextColor
         inputName3.tintColor = bigTextColor
         inputName3.backgroundColor = deviderColor
-        
     }
+    
     func setUpView(){
-        view.addSubview(Title)
+        view.addSubview(titleLabel)
         view.addSubview(backButton)
         view.addSubview(stasus1)
         view.addSubview(inputName1)
@@ -213,9 +238,12 @@ private extension RegisterViewController{
         view.addSubview(stasus3)
         view.addSubview(inputName3)
         view.addSubview(saveButton)
+        view.addSubview(showPasswordButton1)
+        view.addSubview(showPasswordButton2)
     }
+    
     func setUpConstraints(){
-        Title.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(60)
             make.centerX.equalToSuperview()
             make.height.equalTo(28)
@@ -226,7 +254,7 @@ private extension RegisterViewController{
             make.width.height.equalTo(28)
         }
         stasus1.snp.makeConstraints { make in
-            make.top.equalTo(Title.snp.bottom).inset(-60)
+            make.top.equalTo(titleLabel.snp.bottom).inset(-60)
             make.leading.equalToSuperview().inset(20)
         }
         inputName1.snp.makeConstraints { make in
@@ -243,6 +271,16 @@ private extension RegisterViewController{
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(48)
         }
+        showPasswordButton1.snp.makeConstraints { make in
+            make.centerY.equalTo(inputName2.snp.centerY)
+            make.trailing.equalToSuperview().inset(30)
+            make.width.height.equalTo(25)
+        }
+        showPasswordButton2.snp.makeConstraints { make in
+            make.centerY.equalTo(inputName3.snp.centerY)
+            make.trailing.equalToSuperview().inset(30)
+            make.width.height.equalTo(25)
+        }
         stasus3.snp.makeConstraints { make in
             make.top.equalTo(inputName2.snp.bottom).inset(-10)
             make.leading.equalToSuperview().inset(20)
@@ -256,6 +294,7 @@ private extension RegisterViewController{
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(70)
             make.height.equalTo(48)
+            print("save button uploaded")
         }
     }
 }

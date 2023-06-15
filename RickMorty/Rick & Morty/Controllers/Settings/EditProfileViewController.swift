@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import FirebaseAuth
+
 class EditProfileViewController: UIViewController {
     
     let backroundColor = UIColor(named: "backroundColor")
